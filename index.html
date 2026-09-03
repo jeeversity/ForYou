@@ -106,7 +106,7 @@
                     </div>
                     <div class="gallery-item">
                         <img
-                            src="sana4.jpg">
+                            src="sana4.jpg" onclick="playVideo('sana1.mp4')" style="cursor:pointer">
                     </div>
                     <div class="gallery-item">
                         <img
@@ -128,6 +128,16 @@
     <div class="teddy-bear" style="bottom: 10%; right: 5%;">🧸</div>
 
     <script src="./script.js"></script>
+    <div id="popup" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;justify-content:center;align-items:center;z-index:9999">
+<span onclick="closeVideo()" style="position:absolute;top:20px;right:30px;color:white;font-size:45px;cursor:pointer">&times;</span>
+<video id="memVideo" controls autoplay style="width:90%;max-width:500px;border-radius:15px"></video>
+</div>
+<script>
+function playVideo(v){document.getElementById('memVideo').src=v;document.getElementById('popup').style.display='flex';document.getElementById('memVideo').play()}
+function closeVideo(){document.getElementById('popup').style.display='none';document.getElementById('memVideo').pause();document.getElementById('memVideo').src='';}
+</script>
+
+<script src="./script.js"></script>
 </body>
 
 </html>
