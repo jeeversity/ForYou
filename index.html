@@ -11,27 +11,16 @@
         .map-cards{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;justify-content:center}
         .map-card{background:#fff5f7;padding:12px 15px;border-radius:15px;cursor:pointer;flex:1;min-width:130px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.06)}
         .map-card b{color:#ff2e63}
-        /* VIDEO ZOOM FIX */
-        .gallery-item{overflow:hidden; border-radius:12px; background:#000;}
+        /* FIX: PHOTO SIZE = VIDEO SIZE, NO BLACK BAR */
+        .gallery-item{ aspect-ratio: 1 / 1; overflow:hidden; border-radius:12px; background:#fff; }
         .gallery-item img{width:100%; height:100%; object-fit:cover; display:block;}
-        .gallery-item video{width:100%; height:100%; max-height:350px; object-fit:contain !important; background:#000; border-radius:12px; display:block;}
+        .gallery-item video{width:100%; height:100%; object-fit:cover; display:block; border-radius:12px;}
     </style>
 </head>
 <body>
     <audio id="bgMusic" loop><source src="song.mp3" type="audio/mpeg"></audio>
-
-    <div class="password-modal" id="passwordModal">
-        <div class="password-content">
-            <h2>Enter the secret code</h2>
-            <input type="password" class="password-input" id="passwordInput" placeholder="Our special word...">
-            <button class="submit-btn" id="submitPassword">Enter</button>
-        </div>
-    </div>
-
-    <div class="welcome-screen" id="welcomeScreen">
-        <h1 class="welcome-message">Welcome my love, enjoy your stay</h1>
-    </div>
-
+    <div class="password-modal" id="passwordModal"><div class="password-content"><h2>Enter the secret code</h2><input type="password" class="password-input" id="passwordInput" placeholder="Our special word..."><button class="submit-btn" id="submitPassword">Enter</button></div></div>
+    <div class="welcome-screen" id="welcomeScreen"><h1 class="welcome-message">Welcome my love, enjoy your stay</h1></div>
     <div class="container" id="mainContent" style="display: none;">
         <div class="tabs">
             <button class="tab active" data-tab="love-letter"><span>❤️</span> Love Letter</button>
@@ -40,71 +29,15 @@
             <button class="tab" data-tab="notes"><span>📝</span> Notes</button>
             <button class="tab" data-tab="gallery"><span>🌷</span> Gallery</button>
         </div>
-
         <div class="content-area">
-            <div class="tab-content active" id="love-letter">
-                <h2>My Dearest</h2>
-                <div class="letter" id="loveLetter">
-                    <div class="letter-header"><h3>A Letter For You</h3><span>👇 Click to open</span></div>
-                    <div class="letter-content">
-                        <p>My love,</p>
-                        <p>Every day with you feels like a beautiful dream that I never want to wake up from. Your smile brightens my darkest days, and your laughter is my favorite melody.</p>
-                        <p>I cherish every moment we spend together, from our silly inside jokes to our deep conversations under the stars. You've shown me what true happiness feels like, and I'm forever grateful to have you in my life.</p>
-                        <p>No matter where life takes us, always remember that my heart belongs to you.</p>
-                        <p>Forever yours,</p><p>Me</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-content" id="map-journey">
-                <h2>Kota to Purnea - Our Map ❤️</h2>
-                <p style="text-align:center; opacity:0.7; margin-bottom:10px;"></p>
-                <div id="map"></div>
-                <div class="map-cards">
-                    <div class="map-card" onclick="flyTo(25.18, 75.83)"><b>📍 Kota</b><br><small>Rajasthan</small></div>
-                    <div class="map-card" onclick="flyTo(25.78, 87.47)"><b>📍 Purnea</b><br><small>Bihar</small></div>
-                </div>
-            </div>
-
-            <div class="tab-content" id="music">
-                <h2>Your voice, my favourite melody 🎧</h2>
-                <p style="text-align:center; opacity:0.7; margin-bottom:20px;">I can listen to you forever</p>
-                <div class="song" style="background:#ffe6ee; border-radius:15px; padding:15px;">
-                    <div class="song-icon">🎤</div>
-                    <div class="song-info">
-                        <h4>Her voice is my favourite song ❤️</h4>
-                        <audio controls style="width:200px; margin-top:5px;"><source src="myvoice1.mp3" type="audio/mpeg"></audio>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-content" id="notes">
-                <h2>Some reminders</h2>
-                <div class="note"><p>Take care always</p></div>
-                <div class="note"><p>Eat on time</p></div>
-                <div class="note"><p>You're min*.. always</p></div>
-            </div>
-
-            <div class="tab-content" id="gallery">
-                <h2>Flowers for you</h2>
-                <div class="gallery">
-                    <div class="gallery-item"><img src="sana1.jpg"></div>
-                    <div class="gallery-item"><img src="sana2.jpg" onclick="playInline(this, 'Sana35.mp4')" style="cursor:pointer"></div>
-                    <div class="gallery-item"><img src="sana3.jpg"></div>
-                    <div class="gallery-item"><img src="sana4.jpg" onclick="playInline(this, 'sana1.mp4')" style="cursor:pointer"></div>
-                    <div class="gallery-item"><img src="sana5.jpg"></div>
-                    <div class="gallery-item"><img src="sana4.jpg" onclick="playInline(this, 'sana5.mp4')" style="cursor:pointer"></div>
-                </div>
-            </div>
+            <div class="tab-content active" id="love-letter"><h2>My Dearest</h2><div class="letter" id="loveLetter"><div class="letter-header"><h3>A Letter For You</h3><span>👇 Click to open</span></div><div class="letter-content"><p>My love,</p><p>Every day with you feels like a beautiful dream that I never want to wake up from. Your smile brightens my darkest days, and your laughter is my favorite melody.</p><p>I cherish every moment we spend together, from our silly inside jokes to our deep conversations under the stars. You've shown me what true happiness feels like, and I'm forever grateful to have you in my life.</p><p>No matter where life takes us, always remember that my heart belongs to you.</p><p>Forever yours,</p><p>Me</p></div></div></div>
+            <div class="tab-content" id="map-journey"><h2>Kota to Purnea - Our Map ❤️</h2><p style="text-align:center; opacity:0.7; margin-bottom:10px;"></p><div id="map"></div><div class="map-cards"><div class="map-card" onclick="flyTo(25.18, 75.83)"><b>📍 Kota</b><br><small>Rajasthan</small></div><div class="map-card" onclick="flyTo(25.78, 87.47)"><b>📍 Purnea</b><br><small>Bihar</small></div></div></div>
+            <div class="tab-content" id="music"><h2>Your voice, my favourite melody 🎧</h2><p style="text-align:center; opacity:0.7; margin-bottom:20px;">I can listen to you forever</p><div class="song" style="background:#ffe6ee; border-radius:15px; padding:15px;"><div class="song-icon">🎤</div><div class="song-info"><h4>Her voice is my favourite song ❤️</h4><audio controls style="width:200px; margin-top:5px;"><source src="myvoice1.mp3" type="audio/mpeg"></audio></div></div></div>
+            <div class="tab-content" id="notes"><h2>Some reminders</h2><div class="note"><p>Take care always</p></div><div class="note"><p>Eat on time</p></div><div class="note"><p>You're min*.. always</p></div></div>
+            <div class="tab-content" id="gallery"><h2>Flowers for you</h2><div class="gallery"><div class="gallery-item"><img src="sana1.jpg"></div><div class="gallery-item"><img src="sana2.jpg" onclick="playInline(this, 'Sana35.mp4')" style="cursor:pointer"></div><div class="gallery-item"><img src="sana3.jpg"></div><div class="gallery-item"><img src="sana4.jpg" onclick="playInline(this, 'sana1.mp4')" style="cursor:pointer"></div><div class="gallery-item"><img src="sana5.jpg"></div><div class="gallery-item"><img src="sana4.jpg" onclick="playInline(this, 'sana5.mp4')" style="cursor:pointer"></div></div></div>
         </div>
     </div>
-
-    <div class="heart" style="top: 10%; left: 5%;">❤️</div>
-    <div class="heart" style="top: 20%; right: 10%;">❤️</div>
-    <div class="heart" style="bottom: 15%; left: 15%;">❤️</div>
-    <div class="teddy-bear" style="top: 30%; left: 10%;">🧸</div>
-    <div class="teddy-bear" style="bottom: 10%; right: 5%;">🧸</div>
-
+    <div class="heart" style="top: 10%; left: 5%;">❤️</div><div class="heart" style="top: 20%; right: 10%;">❤️</div><div class="heart" style="bottom: 15%; left: 15%;">❤️</div><div class="teddy-bear" style="top: 30%; left: 10%;">🧸</div><div class="teddy-bear" style="bottom: 10%; right: 5%;">🧸</div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="./script.js"></script>
     <script>
@@ -119,7 +52,6 @@
     const bgMusic = document.getElementById('bgMusic');
     function startBgMusic(){ bgMusic.volume=0.5; bgMusic.play().catch(()=>{}); }
     document.getElementById('submitPassword').addEventListener('click', ()=>{ setTimeout(startBgMusic, 800); });
-    
     let mapInitialized = false; let map;
     function initMap(){
      if(mapInitialized) return;
