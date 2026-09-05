@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="./style.css">
     <style>
-        #map{height:350px;width:100%;border-radius:20px;margin-top:15px;z-index:1}
+        #map{height:360px;width:100%;border-radius:20px;margin-top:15px;z-index:1}
         .map-cards{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;justify-content:center}
         .map-card{background:#fff5f7;padding:12px 15px;border-radius:15px;cursor:pointer;flex:1;min-width:130px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.06)}
         .map-card b{color:#ff2e63}
@@ -103,47 +103,44 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="./script.js"></script>
-    <style>.gallery-item video{width:100%;height:100%;object-fit:cover;border-radius:12px}</style>
-<script>
-function playInline(el, vSrc){
-  let box = el.parentElement;
-  if(box.querySelector('video')) return;
-  let vid = document.createElement('video');
-  vid.src = vSrc; vid.controls = true; vid.autoplay = true; vid.playsInline = true;
-  el.style.display = 'none'; box.appendChild(vid);
-  vid.onended = () => { vid.remove(); el.style.display='block'; };
-}
+    <script>
+    function playInline(el, vSrc){
+      let box = el.parentElement;
+      if(box.querySelector('video')) return;
+      let vid = document.createElement('video');
+      vid.src = vSrc; vid.controls = true; vid.autoplay = true; vid.playsInline = true;
+      el.style.display = 'none'; box.appendChild(vid);
+      vid.onended = () => { vid.remove(); el.style.display='block'; };
+    }
+    const bgMusic = document.getElementById('bgMusic');
+    function startBgMusic(){ bgMusic.volume=0.5; bgMusic.play().catch(()=>{}); }
+    document.getElementById('submitPassword').addEventListener('click', ()=>{ setTimeout(startBgMusic, 800); });
+    
+    let mapInitialized = false; let map;
+    function initMap(){
+     if(mapInitialized) return;
+     map = L.map('map').setView([25.5, 81.5], 5);
+     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+     const heartIcon = L.divIcon({html:'❤️', className:'', iconSize:[30,30]});
 
-// BG Music Logic
-const bgMusic = document.getElementById('bgMusic');
-function startBgMusic(){ bgMusic.volume=0.5; bgMusic.play().catch(()=>{}); }
-// tumhara script.js password check ke baad mainContent dikhata hai, usi time music bajega
-const oldSubmit = document.getElementById('submitPassword');
-if(oldSubmit){
-  oldSubmit.addEventListener('click', ()=>{ setTimeout(startBgMusic, 800); });
-}
+     // Kota with photo
+     L.marker([25.18, 75.83], {icon: heartIcon}).addTo(map)
+     .bindPopup('<div style="text-align:center;width:170px"><b>Kota, Rajasthan</b><br><small>Yahan se sab shuru hua 💖</small><br><img src="kota.jpg" style="width:160px;height:110px;object-fit:cover;border-radius:12px;margin-top:8px" onerror="this.src=\'sana1.jpg\'"></div>');
 
-// Map Logic - tab khulne par load hoga
-let mapInitialized = false; let map;
-function initMap(){
- if(mapInitialized) return;
- map = L.map('map').setView([25.5, 81.5], 5);
- L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
- const heartIcon = L.divIcon({html:'❤️', className:'', iconSize:[30,30]});
- L.marker([25.18, 75.83], {icon: heartIcon}).addTo(map).bindPopup('<b>Kota, Rajasthan</b><br> memories');
- L.marker([25.78, 87.47], {icon: heartIcon}).addTo(map).bindPopup('<b>Purnea, Bihar</b><br> memories');
- const line = L.polyline([[25.18, 75.83],[25.78, 87.47]], {color:'#ff2e63', weight:3, dashArray:'10,10'}).addTo(map);
- map.fitBounds(line.getBounds(), {padding:[50,50]});
- mapInitialized=true;
-}
-function flyTo(lat,lng){ if(map){ map.flyTo([lat,lng], 8, {duration:2}); } }
+     // Purnea with photo
+     L.marker([25.78, 87.47], {icon: heartIcon}).addTo(map)
+     .bindPopup('<div style="text-align:center;width:170px"><b>Purnea, Bihar</b><br><small>Mera dil yahin rehta hai 💖</small><br><img src="purnea.jpg" style="width:160px;height:110px;object-fit:cover;border-radius:12px;margin-top:8px" onerror="this.src=\'sana2.jpg\'"></div>');
 
-// tab click par map init karo
-document.querySelectorAll('.tab').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    if(btn.dataset.tab==='map-journey'){ setTimeout(()=>{ initMap(); map.invalidateSize(); }, 300); }
-  });
-});
-</script>
+     const line = L.polyline([[25.18, 75.83],[25.78, 87.47]], {color:'#ff2e63', weight:3, dashArray:'10,10'}).addTo(map);
+     map.fitBounds(line.getBounds(), {padding:[50,50]});
+     mapInitialized=true;
+    }
+    function flyTo(lat,lng){ if(map){ map.flyTo([lat,lng], 8, {duration:2}); } }
+    document.querySelectorAll('.tab').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        if(btn.dataset.tab==='map-journey'){ setTimeout(()=>{ initMap(); map.invalidateSize(); }, 300); }
+      });
+    });
+    </script>
 </body>
 </html>
