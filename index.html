@@ -130,8 +130,8 @@ function initMap(){
  map = L.map('map').setView([25.5, 81.5], 5);
  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
  const heartIcon = L.divIcon({html:'❤️', className:'', iconSize:[30,30]});
- L.marker([25.18, 75.83], {icon: heartIcon}).addTo(map).bindPopup('<b>Kota, Rajasthan</b><br>Yahan se shuru hui kahani');
- L.marker([25.78, 87.47], {icon: heartIcon}).addTo(map).bindPopup('<b>Purnea, Bihar</b><br>Mera dil yahin hai');
+ L.marker([25.18, 75.83], {icon: heartIcon}).addTo(map).bindPopup('<b>Kota, Rajasthan</b><br> memories');
+ L.marker([25.78, 87.47], {icon: heartIcon}).addTo(map).bindPopup('<b>Purnea, Bihar</b><br> memories');
  const line = L.polyline([[25.18, 75.83],[25.78, 87.47]], {color:'#ff2e63', weight:3, dashArray:'10,10'}).addTo(map);
  map.fitBounds(line.getBounds(), {padding:[50,50]});
  mapInitialized=true;
