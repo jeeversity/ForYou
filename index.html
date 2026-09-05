@@ -53,8 +53,8 @@
             </div>
 
             <div class="tab-content" id="map-journey">
-                <h2>Kota to Purnea - Our Love Map ❤️</h2>
-                <p style="text-align:center; opacity:0.7; margin-bottom:10px;">1000km ka faasla, par dil ek hi</p>
+                <h2>Kota to Purnea - Our Map ❤️</h2>
+                <p style="text-align:center; opacity:0.7; margin-bottom:10px;"> </p>
                 <div id="map"></div>
                 <div class="map-cards">
                     <div class="map-card" onclick="flyTo(25.18, 75.83)"><b>📍 Kota</b><br><small>Rajasthan</small></div>
@@ -125,11 +125,11 @@
 
      // Kota with photo
      L.marker([25.18, 75.83], {icon: heartIcon}).addTo(map)
-     .bindPopup('<div style="text-align:center;width:170px"><b>Kota, Rajasthan</b><br><small>Yahan se sab shuru hua 💖</small><br><img src="kota.jpg" style="width:160px;height:110px;object-fit:cover;border-radius:12px;margin-top:8px" onerror="this.src=\'sana1.jpg\'"></div>');
+     .bindPopup('<div style="text-align:center;width:170px"><b>Kota, Rajasthan</b><br><small>Memories 💖</small><br><img src="kota.jpg" style="width:160px;height:110px;object-fit:cover;border-radius:12px;margin-top:8px" onerror="this.src=\'sana1.jpg\'"></div>');
 
      // Purnea with photo
      L.marker([25.78, 87.47], {icon: heartIcon}).addTo(map)
-     .bindPopup('<div style="text-align:center;width:170px"><b>Purnea, Bihar</b><br><small>Mera dil yahin rehta hai 💖</small><br><img src="purnea.jpg" style="width:160px;height:110px;object-fit:cover;border-radius:12px;margin-top:8px" onerror="this.src=\'sana2.jpg\'"></div>');
+     .bindPopup('<div style="text-align:center;width:170px"><b>Purnea, Bihar</b><br><small>Memories 💖</small><br><img src="purnea.jpg" style="width:160px;height:110px;object-fit:cover;border-radius:12px;margin-top:8px" onerror="this.src=\'sana2.jpg\'"></div>');
 
      const line = L.polyline([[25.18, 75.83],[25.78, 87.47]], {color:'#ff2e63', weight:3, dashArray:'10,10'}).addTo(map);
      map.fitBounds(line.getBounds(), {padding:[50,50]});
